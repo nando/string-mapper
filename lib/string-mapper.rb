@@ -1,13 +1,13 @@
 require 'active_support'
 
 class String
-  def self.add_mapper(name, &def_val_block)
-    mappings = "#{name}_mappings"
-    cattr_accessor(mappings)
-    self.send mappings + '=', {}
+  def self.add_mapper(name, mappings = {}, &def_val_block)
+    accessor = "#{name}_mappings"
+    cattr_accessor(accessor)
+    self.send accessor + '=', mappings
     define_method "to_#{name}" do
       mapping = nil
-      String.send(mappings).each do |key, value|
+      String.send(accessor).each do |key, value|
         regexp = if key.is_a?(Regexp)
           key
         else

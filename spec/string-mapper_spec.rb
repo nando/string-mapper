@@ -1,27 +1,52 @@
 require File.expand_path(File.dirname(__FILE__)) + '/../lib/string-mapper'
 require 'spec'
 
-describe 'String mapper' do
-  it 'should translate from regular expresions, strings and symbols' do
-    # regexp...
-    String.add_mapper(:number)
-    String.number_mappings[/un[ao]?$/i] = 1 
-    %{un una uno UN UNA UNO}.each do |numero| 
-      numero.to_number.should == 1
-    end
-    # string...
-    String.number_mappings['dos'] = 2
-    'DoS'.to_number.should == 2
-    'DOS'.to_number.should == 2
-    # symbol
-    String.number_mappings[:tres] = 3
-    'TRES'.to_number.should == 3
-    'Tres'.to_number.should == 3
+describe "String.add_mapper(:target)" do
+  before(:all) do
+    String.add_mapper(:target)
   end
 
-  it 'should receive a block when defined that should be used for default values (not mapped)' do
+  it 'should create a class mapping hash for target conversions' do
+    String.target_mappings.should be_a_kind_of(Hash)
+  end
+
+  it 'should create an instance to_target method   topping hash for target' do
+    'Source string'.should respond_to(:to_target)
+  end
+
+  it 'should return nil for an unmapped String instance' do
+    'unmapped string'.to_target.should be_nil
+  end
+
+  it 'should convert from RegExps' do
+    String.target_mappings[/(an?|one)$/i] = 1
+    %{a an one A AN ONE}.each do |number| 
+      number.to_target.should == 1
+    end
+  end
+
+  it 'should convert from a String ignoring case' do
+    String.target_mappings['one million'] = 1000000
+    'One million'.to_target.should be(1000000)
+  end
+
+  it 'should convert from a Symbol ignoring case' do
+    String.target_mappings[:four] = 4
+    'FOUR'.to_target.should be(4)
+  end
+end
+
+describe "String.add_mapper(:target) { |str| default_value_block }" do
+  it 'should use default_value_block to convert unmapped strings' do
     String.add_mapper(:number) { |str| str.to_i }
     '1000'.to_number.should == 1000
-    'ningún'.to_number.should == 0
+    'nothing'.to_number.should == 0 # not nil
+  end
+end
+
+describe "String.add_mapper(:target, {mapping_hash} )" do
+  it 'should use {mapping hash} to convert strings' do
+    String.add_mapper(:class, :vector => Array)
+    'vector'.to_class.should be(Array)
   end
 end
