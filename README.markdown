@@ -4,7 +4,7 @@ String Mapper is an extension of the String class to perform conversions based o
 
 ## Requirements
 
-String Mapper uses ActiveSupport's cattr_accessor.
+String Mapper uses ActiveSupport's `cattr_accessor`.
 
 ## Howto  
 
@@ -34,3 +34,13 @@ Also a block can be given to `add_mapper` to manage the default value when no ma
     'an'.to_number   # => 1  
     'two'.to_number  # => 2  
     '1000'.to_model  # => 1000
+
+Other use examples can be found in `spec/string-mapper_spec.rb`.
+
+
+## AUTHOR
+
+Copyright 2008, Fernando García Samblas <fernando.garcia at the-cocktail.com>
+
+See COPYING file for licensing details.
+
