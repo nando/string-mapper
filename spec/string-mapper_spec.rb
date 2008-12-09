@@ -1,11 +1,4 @@
-#require File.expand_path(File.dirname(__FILE__) + '/../../../../config/environment')
-#require 'active_support' # cattr_accesor
 require File.expand_path(File.dirname(__FILE__)) + '/../lib/string-mapper'
-
-dir = File.dirname(__FILE__)
-lib_path = File.expand_path("#{dir}/rspec/lib")
-$LOAD_PATH.unshift lib_path unless $LOAD_PATH.include?(lib_path)
-
 require 'spec'
 
 describe 'String mapper' do
