@@ -6,7 +6,17 @@ String Mapper is an extension of the String class to perform conversions based o
 
 String Mapper uses ActiveSupport's `cattr_accessor`.
 
-## Howto  
+## Installation
+
+    $ script/plugin install git://github.com/nando/string-mapper.git
+
+The plugin just add its lib path to LOAD_PATH in order to be explicitly required where needed (for example in test environment).
+
+## Howto
+
+First of all require the lib:
+
+    require 'string-mapper'
 
 Class function `add_mapper` allows the definition of a new target for conversions. For example, the call:
 
@@ -38,9 +48,9 @@ Also a block can be given to `add_mapper` to manage the default value when no ma
 Other use examples can be found in `spec/string-mapper_spec.rb`.
 
 
-## AUTHOR
+## License
 
 Copyright 2008, Fernando García Samblas <fernando.garcia at the-cocktail.com>
 
-See COPYING file for licensing details.
+This software is released under the GPL License (see license agreement in COPYING).
 
