@@ -34,6 +34,11 @@ describe "String.add_mapper(:target)" do
     String.target_mappings[:four] = 4
     'FOUR'.to_target.should be(4)
   end
+
+  it 'should map something target to "false" (boolean false)' do
+    String.target_mappings['not be truth'] = false
+    'not be truth'.to_target.should be(false)
+  end
 end
 
 describe "String.add_mapper(:target) { |str| default_value_block }" do
