@@ -37,7 +37,10 @@ class String
         else
           Regexp.new(key.to_s, Regexp::IGNORECASE)
         end
-        (mapping = value) && break if self =~ regexp
+        if self =~ regexp
+          mapping = ( value.kind_of?(String) ? eval('"'+value+'"') : value)
+          break
+        end
       end
       if mapping.nil?
         (def_val_block && def_val_block.call(self))

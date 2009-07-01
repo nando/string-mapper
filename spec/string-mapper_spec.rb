@@ -39,6 +39,11 @@ describe "String.add_mapper(:target)" do
     String.target_mappings['not be truth'] = false
     'not be truth'.to_target.should be(false)
   end
+
+  it 'should convert from RegExps using matched captures in the returned value' do
+    String.target_mappings[/In the (.+) of the (.+)$/i] = '#{$1.downcase}-of-the-#{$2.downcase}'
+    'In the Name of the Father'.to_target.should == 'name-of-the-father'
+  end
 end
 
 describe "String.add_mapper(:target) { |str| default_value_block }" do
