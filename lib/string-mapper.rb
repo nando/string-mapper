@@ -24,7 +24,6 @@
 require 'active_support'
 
 class String
-
   def self.add_mapper(name, mappings = {}, &def_val_block)
     accessor = "#{name}_mappings"
     cattr_accessor(accessor)
@@ -38,7 +37,7 @@ class String
           Regexp.new(key.to_s, Regexp::IGNORECASE)
         end
         if self =~ regexp
-          mapping = ( value.kind_of?(String) ? eval('"'+value+'"') : value)
+          mapping = (value.kind_of?(String) ? eval('"'+value+'"') : value)
           break
         end
       end
