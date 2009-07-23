@@ -44,6 +44,14 @@ describe "String.add_mapper(:target)" do
     String.target_mappings[/In the (.+) of the (.+)$/i] = '#{$1.downcase}-of-the-#{$2.downcase}'
     'In the Name of the Father'.to_target.should == 'name-of-the-father'
   end
+
+  it 'should execute the value if it is a Proc object' do
+    def new_world_url
+      '/worlds/new'
+    end
+    String.target_mappings['new world'] = lambda { new_world_url }
+    'new world'.to_target.should == new_world_url
+  end
 end
 
 describe "String.add_mapper(:target) { |str| default_value_block }" do

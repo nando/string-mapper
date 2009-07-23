@@ -37,7 +37,13 @@ class String
           Regexp.new(key.to_s, Regexp::IGNORECASE)
         end
         if self =~ regexp
-          mapping = (value.kind_of?(String) ? eval('"'+value+'"') : value)
+          mapping = if value.is_a?(String)
+            eval('"'+value+'"')
+          elsif value.is_a?(Proc)
+            value.call
+          else
+            value
+          end
           break
         end
       end
