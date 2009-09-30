@@ -1,0 +1,7 @@
+init.rb
+COPYING
+Manifest.txt
+Rakefile
+README.markdown
+lib/string-mapper.rb
+spec/string-mapper_spec.rb
