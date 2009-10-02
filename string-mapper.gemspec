@@ -14,4 +14,17 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.2.0}
   s.summary = %q{String extension for conversions based on dynamic mappings}
+
+  if s.respond_to? :specification_version then
+    current_version = Gem::Specification::CURRENT_SPECIFICATION_VERSION
+    s.specification_version = 2
+
+    if current_version >= 3 then
+      s.add_runtime_dependency(%q<activesupport>, [">= 1.2.0"])
+    else
+      s.add_dependency(%q<activesupport>, [">= 1.2.0"])
+    end
+  else
+    s.add_dependency(%q<activesupport>, [">= 1.2.0"])
+  end
 end
