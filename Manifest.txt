@@ -1,7 +1,9 @@
-init.rb
 COPYING
+History.txt
 Manifest.txt
-Rakefile
 README.markdown
+Rakefile
+init.rb
 lib/string-mapper.rb
 spec/string-mapper_spec.rb
+string-mapper.gemspec
