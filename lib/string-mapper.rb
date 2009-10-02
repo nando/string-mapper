@@ -1,5 +1,4 @@
 #!/usr/bin/env ruby
-
 # string-mapper.rb
 #
 # Copyright 2008, Fernando García Samblas <fernando.garcia at the-cocktail.com>
@@ -21,7 +20,21 @@
 # write to the Free Software Foundation, Inc., 51 Franklin St, Fifth 
 # Floor, Boston, MA 02110-1301 USA
 #
+$:.unshift(File.dirname(__FILE__)) unless
+  $:.include?(File.dirname(__FILE__)) || $:.include?(File.expand_path(File.dirname(__FILE__)))
+	
 require 'active_support'
+
+module StringMapper #:nodoc:
+  class VERSION #:nodoc:
+    MAJOR = 0
+    MINOR = 1
+    TINY  = 0
+    PATCH = nil # Set to nil for official release
+
+    STRING = [MAJOR, MINOR, TINY, PATCH].compact.join('.')
+  end
+end
 
 class String
   def self.add_mapper(name, mappings = {}, &def_val_block)
