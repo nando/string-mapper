@@ -53,11 +53,7 @@ class String
           mapping = if value.is_a?(String)
             eval('"'+value+'"')
           elsif value.is_a?(Proc)
-            if $~.captures.any?
-              value.call $~.captures
-            else
-              value.call
-            end
+            value.call $~.captures
           else
             value
           end
