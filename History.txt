@@ -1,3 +1,10 @@
+== 0.1.2 2009-10-27
+* 1 behaviour changed:
+  * Map of Regexp with captures to a Proc that receive them as an params. For
+    example:
+      my_mappings["(.+) and (.+)"] => lambda { |first, second|
+        "First #{first} and then #{second}" }
+
 == 0.1.1 2009-10-27
 * 1 major enhancement:
   * Map of Regexp with captures to a Proc that receive them as an array. For
