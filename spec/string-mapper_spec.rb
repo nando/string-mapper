@@ -27,11 +27,15 @@ describe "String.add_mapper(:target)" do
 
   it 'should convert from a String ignoring case' do
     String.target_mappings['one million'] = 1000000
+    'Thirty or one million'.to_target.should be_nil
+    'one million dollars'.to_target.should be_nil
     'One million'.to_target.should be(1000000)
   end
 
   it 'should convert from a Symbol ignoring case' do
     String.target_mappings[:four] = 4
+    'Twenty four'.to_target.should be_nil
+    'fourty five'.to_target.should be_nil
     'FOUR'.to_target.should be(4)
   end
 

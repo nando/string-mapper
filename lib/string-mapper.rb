@@ -47,7 +47,7 @@ class String
         regexp = if key.is_a?(Regexp)
           key
         else
-          Regexp.new(key.to_s, Regexp::IGNORECASE)
+          Regexp.new("^#{key}$", Regexp::IGNORECASE)
         end
         if self =~ regexp
           mapping = if value.is_a?(String)
