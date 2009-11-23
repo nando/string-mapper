@@ -1,4 +1,7 @@
-== 0.1.2 2009-10-27
+== 0.1.2.1 2009-11-23
+* Bugfix in conversions from String or Symbol (too much opened Regex)
+
+== 0.1.2 2009-11-20
 * 1 behaviour changed:
   * Map of Regexp with captures to a Proc that receive them as an params. For
     example:
