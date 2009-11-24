@@ -55,11 +55,14 @@ describe "String.add_mapper(:target)" do
   end
 
   it 'should pass matched captures as arguments to the proc object' do
+    String.target_mappings[/one (.+)/] = lambda {|capture|
+      "This test one #{capture}"
+    }
+    'one param'.to_target.should == "This test one param"
     String.target_mappings["(.+) new (.+)"] = lambda {|adjective, thing|
       "This is a #{adjective} new #{thing}"
     }
     'brand new world'.to_target.should == "This is a brand new world"
-    
   end
 end
 
